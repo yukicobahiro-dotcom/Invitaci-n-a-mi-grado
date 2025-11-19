@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación a mi grado</title>
 
   <!-- Fuente Great Vibes -->
@@ -25,12 +26,18 @@
       height:100vh;
       cursor:pointer;
     }
-    #pantalla-sobre img { width:220px; animation:pulse 1.5s infinite; }
+    #pantalla-sobre img { 
+      width:55vw; 
+      max-width:260px;
+      animation:pulse 1.5s infinite; 
+    }
     #pantalla-sobre p {
-      font-size:36px;
+      font-size:8vw;
+      max-font-size:36px;
       color:#e8d18f;
       margin-top:18px;
       text-shadow:0 0 10px rgba(255,215,0,0.7);
+      text-align:center;
     }
 
     /* Pantalla 2 */
@@ -43,20 +50,24 @@
       opacity:0;
       transition:opacity 0.8s ease;
     }
-    #sobre-abierto img { width:260px; }
+    #sobre-abierto img { 
+      width:60vw; 
+      max-width:300px;
+    }
 
     /* Pantalla 3 */
     #contenido {
       display:none;
       text-align:center;
-      padding:40px;
+      padding:5vw;
       min-height:100vh;
       opacity:0;
       transition:opacity 1s ease;
     }
 
     #contenido img.principal {
-      width:320px;
+      width:80vw;
+      max-width:360px;
       margin-bottom:30px;
       border-radius:14px;
       box-shadow:0 0 22px rgba(255,215,0,0.45);
@@ -66,7 +77,8 @@
     }
 
     h1.titulo {
-      font-size:72px;
+      font-size:12vw;
+      max-font-size:72px;
       margin-top:5px;
       color:#f5e3a1;
       text-shadow:0 0 18px rgba(255,215,0,0.9);
@@ -75,15 +87,16 @@
 
     a.ubicacion {
       margin-top:38px;
-      padding:16px 40px;
+      padding:4vw 6vw;
       border-radius:18px;
-      font-size:40px;
+      font-size:7vw;
+      max-font-size:40px;
       background: #000;
       color:#f5e3a1;
       border:3px solid #d4af37;
       text-decoration:none;
       display:block;
-      width:75%;
+      width:85%;
       max-width:420px;
       margin-left:auto;
       margin-right:auto;
@@ -191,5 +204,6 @@
 
 </body>
 </html>
+
 
 
