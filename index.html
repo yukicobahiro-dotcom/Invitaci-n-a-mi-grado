@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Invitación a mi grado</title>
 
   <!-- Fuente Great Vibes -->
@@ -26,18 +26,12 @@
       height:100vh;
       cursor:pointer;
     }
-    #pantalla-sobre img { 
-      width:55vw; 
-      max-width:260px;
-      animation:pulse 1.5s infinite; 
-    }
+    #pantalla-sobre img { width:220px; animation:pulse 1.5s infinite; }
     #pantalla-sobre p {
-      font-size:8vw;
-      max-font-size:36px;
+      font-size:36px;
       color:#e8d18f;
       margin-top:18px;
       text-shadow:0 0 10px rgba(255,215,0,0.7);
-      text-align:center;
     }
 
     /* Pantalla 2 */
@@ -50,35 +44,34 @@
       opacity:0;
       transition:opacity 0.8s ease;
     }
-    #sobre-abierto img { 
-      width:60vw; 
-      max-width:300px;
-    }
+    #sobre-abierto img { width:260px; }
 
     /* Pantalla 3 */
     #contenido {
       display:none;
       text-align:center;
-      padding:5vw;
+      padding:40px 20px;
       min-height:100vh;
       opacity:0;
       transition:opacity 1s ease;
     }
 
-    #contenido img.principal {
-      width:80vw;
-      max-width:360px;
-      margin-bottom:30px;
-      border-radius:14px;
-      box-shadow:0 0 22px rgba(255,215,0,0.45);
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
+    /* 🔥 TODOS LOS GIFS IGUAL DE GRANDES */
+    img.principal {
+      width: 85vw;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;  /* Tamaño uniforme */
+      object-fit: cover;
+      margin-bottom: 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 22px rgba(255,215,0,0.45);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1.titulo {
-      font-size:12vw;
-      max-font-size:72px;
+      font-size:72px;
       margin-top:5px;
       color:#f5e3a1;
       text-shadow:0 0 18px rgba(255,215,0,0.9);
@@ -87,16 +80,15 @@
 
     a.ubicacion {
       margin-top:38px;
-      padding:4vw 6vw;
+      padding:16px 40px;
       border-radius:18px;
-      font-size:7vw;
-      max-font-size:40px;
+      font-size:40px;
       background: #000;
       color:#f5e3a1;
       border:3px solid #d4af37;
       text-decoration:none;
       display:block;
-      width:85%;
+      width:75%;
       max-width:420px;
       margin-left:auto;
       margin-right:auto;
@@ -111,8 +103,6 @@
     /* Animaciones */
     @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);} }
     @keyframes glow {from {text-shadow:0 0 8px gold;} to {text-shadow:0 0 22px gold;} }
-    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
-
   </style>
 </head>
 <body>
@@ -130,22 +120,13 @@
 
   <!-- PANTALLA 3 -->
   <div id="contenido">
-    <!-- GIF1: animación inicial más larga -->
     <img id="gif1" class="principal" src="gif1.gif">
-    <!-- GIF2: animación que se repite -->
     <img id="gif2" class="principal" src="gif2.gif" style="display:none;">
 
     <h1 class="titulo">Invitación a mi grado</h1>
 
-    <!-- Botón ubicación ceremonia -->
-    <a class="ubicacion" href="https://maps.app.goo.gl/6w18dS3E4MEETYC56" target="_blank">
-      📍 Ubicación Ceremonia
-    </a>
-
-    <!-- Botón ubicación recepción -->
-    <a class="ubicacion" href="https://maps.app.goo.gl/9JTYoYQoaL1y5rwD8" target="_blank">
-      🎉 Ubicación Recepción
-    </a>
+    <a class="ubicacion" href="https://maps.app.goo.gl/6w18dS3E4MEETYC56" target="_blank">📍 Ubicación Ceremonia</a>
+    <a class="ubicacion" href="https://maps.app.goo.gl/9JTYoYQoaL1y5rwD8" target="_blank">🎉 Ubicación Recepción</a>
   </div>
 
   <!-- AUDIO -->
@@ -158,34 +139,35 @@
     const sobreAbierto = document.getElementById('sobre-abierto');
     const contenido = document.getElementById('contenido');
     const audio = document.getElementById('music');
-
     const gif1 = document.getElementById('gif1');
     const gif2 = document.getElementById('gif2');
 
-    pantallaSobre.onclick = function() {
+    /* 🔇 Apagar música al salir de la página */
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        audio.pause();
+      }
+    });
 
+    pantallaSobre.onclick = function() {
       audio.volume = 0.25;
       audio.play().catch(()=>{});
 
       pantallaSobre.style.display="none";
 
-      // Mostrar sobre abierto con fade
       sobreAbierto.style.display="flex";
       requestAnimationFrame(()=>{
         sobreAbierto.style.opacity = 1;
       });
 
-      // Duración del GIF del sobre → 2.3 segundos
       setTimeout(()=>{
         sobreAbierto.style.opacity = 0;
-
         setTimeout(()=>{
           sobreAbierto.style.display="none";
           contenido.style.display="block";
           requestAnimationFrame(()=>{
             contenido.style.opacity = 1;
 
-            // Después de 4 segundos mostrar GIF2 en loop
             setTimeout(()=>{
               gif1.style.display = "none";
               gif2.style.display = "block";
@@ -193,7 +175,6 @@
 
           });
         },500);
-
       },2300);
     };
 
